@@ -27,6 +27,7 @@ int main(){
 		printf("\nchoose: ");scanf("%d",&op);
 		switch(op){
 			case 0:
+				if(vet != NULL)
 				free(vet);
 				break;
 			case 1:
@@ -42,6 +43,7 @@ int main(){
 			case 4:
 				if(vet != NULL) {free(vet);}                                                                                printf("\nallocating...\n");
 				vet = alloca_vet(size);
+				printf("\norganizing....");
 				insertionsort(vet,size);
 				break;
 			case 5:
