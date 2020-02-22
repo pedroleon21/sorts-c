@@ -7,6 +7,7 @@ long long int * alloca_vet(long long int size);
 void booblesort(long long int *vet,long long int size); // pointer to lli vetctor && lli size return lli pointer to vector
 void forprint(long long int *vet,long long int size);// pointer to lli vector && lli size
 void insertionsort(long long int *vet, long long int size); // lli pointer to vector && lli size of vector
+void quicksort(long long int * vet, long long int init, long long int end); // lli poiter to vecto && lli ini  sub lli end
 
 int main(){
 	//contrucao de um menu
@@ -38,7 +39,14 @@ int main(){
 				booblesort(vet,size);
 				break;
 			case 2:
-				printf("err 2");
+				
+				break;
+			case 3:
+				if(vet != NULL) {free(vet);}
+				printf("\nallocating");
+				vet = alloca_vet(size);
+				printf("\n\norganizing");
+				quicksort(vet,0,size);
 				break;
 			case 4:
 				if(vet != NULL) {free(vet);}                                                                                printf("\nallocating...\n");
@@ -57,10 +65,31 @@ int main(){
 					forprint(vet,size);
 				}else printf("\nSegmentation fault");
 				break;
+			default:
+				printf("\nvalor invalido");
+				break;
 		}
 	}while(op != 0);
 	return 0;
 }
+
+void quicksort(long long int *vet,long long int init,long long int end){
+	long long int p = vet[(init + end) / 2],in = init, en = end,swap;
+	while(in <= en){
+		while(vet[in] < p && in < end) in++;
+		while(vet[en] > p && en > init) en--;
+		if(in <= en){
+			swap = vet[in];
+			vet[in] = vet[en];
+			vet[en] = swap;
+			in++;
+			en--;
+		}
+	}
+	if(in < end){ quicksort(vet,in,end);}
+	if(en > init){ quicksort(vet,init,en);}
+}
+
 void booblesort(long long int * vet,long long int size){ //booble sort function
 	long long int i=0,j,aux;
 	int flag= 1;
