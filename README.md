@@ -4,3 +4,4 @@
 # add booble sort
 # add insertion sort
 # add quick sort
+# show time function
